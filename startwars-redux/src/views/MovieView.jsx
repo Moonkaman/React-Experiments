@@ -1,25 +1,36 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetch_movies } from "../store/actions/Actions";
+
+import { fetch_movie } from "../store/actions/Actions";
 
 const MovieView = props => {
-  const movies = useSelector(state => state.movies);
-  const fetchingMovies = useSelector(state => state.is_fetching_movies);
+  const fetchingMovie = useSelector(state => state.is_fetching_movie);
+  const movie = useSelector(state => state.movie);
+  const chars = useSelector(state => state.movie_characters);
+  const isFetchingMovieChars = useSelector(
+    state => state.is_fetching_movie_characters
+  );
   const dispatch = useDispatch();
-
+  console.log(movie);
+  console.log(fetchingMovie);
   useEffect(
     _ => {
-      dispatch(fetch_movies());
+      dispatch(fetch_movie(props.match.params.id));
     },
-    [dispatch]
+    [dispatch, props.match.params.id]
   );
-
-  if (!fetchingMovies) {
+  if (!fetchingMovie && movie) {
     return (
       <div>
-        {movies.map(movie => (
-          <h1>{movie.title}</h1>
-        ))}
+        <h1>{movie.title}</h1>
+        <h3>Characters: </h3>
+        <ul>
+          {isFetchingMovieChars ? (
+            <h4>Loading...</h4>
+          ) : (
+            chars.map(char => <ul>{char.name}</ul>)
+          )}
+        </ul>
       </div>
     );
   } else {
