@@ -24,6 +24,7 @@ class Container1 extends Component {
         <button onClick={() => this.props.action_creator3(user_text)}>
           Dispatch Action Creator 3
         </button>
+        {this.props.user_text ? <h1>{this.props.user_text}</h1> : null}
       </div>
     );
   }
@@ -31,7 +32,8 @@ class Container1 extends Component {
 
 function mapStateToProps(state) {
   return {
-    stateprop1: state.stateprop1
+    stateprop1: state.reducer1.stateprop1,
+    user_text: state.user_reducer.user_text
   };
 }
 
