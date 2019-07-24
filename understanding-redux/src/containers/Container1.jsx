@@ -10,6 +10,7 @@ class Container1 extends Component {
     const user_text = "text 1";
     return (
       <div>
+        <button onClick={() => this.props.auth.login()}>Login</button>
         <button onClick={() => console.log(this.props.stateprop1)}>
           Get State
         </button>
