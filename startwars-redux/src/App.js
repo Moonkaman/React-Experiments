@@ -1,10 +1,14 @@
 import React from "react";
+import { Route } from "react-router-dom";
+
 import "./App.css";
+
+import MovieView from "./views/MovieView";
 
 function App() {
   return (
     <div className="App">
-      <h1>Home</h1>
+      <Route exact path="/movies" component={MovieView} />
     </div>
   );
 }
