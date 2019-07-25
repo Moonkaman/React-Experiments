@@ -5,8 +5,10 @@ import { fetch_movies } from "../store/actions/Actions";
 import Movie from "../components/MovieView/Movie";
 
 const MoviesView = props => {
-  const movies = useSelector(state => state.movies);
-  const fetchingMovies = useSelector(state => state.is_fetching_movies);
+  const movies = useSelector(state => state.movie_reducers.movies);
+  const fetchingMovies = useSelector(
+    state => state.movie_reducers.is_fetching_movies
+  );
   const dispatch = useDispatch();
 
   useEffect(

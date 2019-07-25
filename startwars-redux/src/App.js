@@ -5,12 +5,14 @@ import "./App.css";
 
 import MoviesView from "./views/MoviesView";
 import MovieView from "./views/MovieView";
+import CharacterView from "./views/CharacterView";
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/movies" component={MoviesView} />
       <Route exact path="/movies/:id" component={MovieView} />
+      <Route exact path="/characters/:id" component={CharacterView} />
     </div>
   );
 }
