@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetch_movies } from "../store/actions/Actions";
 
-import Movie from "../components/MovieView/Movie";
+import Movie from "../components/Movies/Movie";
 
 const MoviesView = props => {
   const movies = useSelector(state => state.movie_reducers.movies);

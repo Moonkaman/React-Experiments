@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetch_movie, fetch_movie_characters } from "../store/actions/Actions";
 
 // Components
-import Character from "../components/MovieView/Character";
+import Character from "../components/Characters/Character";
 
 const MovieView = props => {
   const fetchingMovie = useSelector(

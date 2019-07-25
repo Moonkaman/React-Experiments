@@ -1,7 +1,6 @@
 import * as actionTypes from './ActionTypes';
 
 const baseURL = 'https://swapi.co/api'
-let regx = /[^0-9]/g;
 
 export const fetch_movies = () => {
   return dispatch => {
@@ -47,6 +46,23 @@ export const fetch_character = id => {
     dispatch({type: actionTypes.FETCHING_CHARACTER});
     fetch(`${baseURL}/people/${id}`)
     .then(res => res.json())
-    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTER_SUCCESS, payload: data}))
+    .then(data => {
+      fetch(data.homeworld)
+      .then(res => res.json())
+      .then(homeworld => {
+        dispatch({type: actionTypes.FETCHING_CHARACTER_SUCCESS, payload: data})
+        dispatch({type: actionTypes.FETCHING_CHARACTER_HOMEWORLD_SUCCESS, payload: homeworld})
+      })
+  })
+  }
+}
+
+export const fetch_characters = () => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_CHARACTERS});
+
+    fetch(`${baseURL}/people`)
+    .then(res => res.json())
+    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTERS_SUCCESS, payload: data}))
   }
 }
