@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetch_movies } from "../store/actions/Actions";
+import Spinner from "react-bootstrap/Spinner";
 
-import Movie from "../components/Movies/Movie";
+import MovieList from "../components/Movies/MoviesList";
 
 const MoviesView = props => {
   const movies = useSelector(state => state.movie_reducers.movies);
@@ -23,13 +24,12 @@ const MoviesView = props => {
   if (!fetchingMovies) {
     return (
       <div>
-        {movies.map(movie => (
-          <Movie key={movie.episode_id} movie={movie} />
-        ))}
+        <h2>Movies</h2>
+        <MovieList movies={movies} />
       </div>
     );
   } else {
-    return <h2>Loading...</h2>;
+    return <Spinner animation="border" variant="primary" />;
   }
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
 
 // Actions
 import { fetch_movie, fetch_movie_characters } from "../store/actions/Actions";
@@ -46,7 +47,7 @@ const MovieView = props => {
         {hasChars ? (
           <div>
             {isFetchingMovieChars ? (
-              <h4>Loading...</h4>
+              <Spinner animation="border" variant="primary" />
             ) : (
               chars.map(char => <Character character={char} />)
             )}
@@ -57,7 +58,7 @@ const MovieView = props => {
       </div>
     );
   } else {
-    return <h2>Loading...</h2>;
+    return <Spinner animation="border" variant="primary" />;
   }
 };
 

@@ -63,6 +63,6 @@ export const fetch_characters = () => {
 
     fetch(`${baseURL}/people`)
     .then(res => res.json())
-    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTERS_SUCCESS, payload: data}))
+    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTERS_SUCCESS, payload: data.results}))
   }
 }
