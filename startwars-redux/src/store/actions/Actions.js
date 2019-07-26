@@ -2,6 +2,10 @@ import * as actionTypes from './ActionTypes';
 
 const baseURL = 'https://swapi.co/api'
 
+const options = {
+  mode: 'no-cors'
+}
+
 export const fetch_movies = () => {
   return dispatch => {
     dispatch({type: actionTypes.FETCHING_MOVIES})
@@ -10,7 +14,7 @@ export const fetch_movies = () => {
     .then(data => {
       dispatch({type: actionTypes.FETCHING_MOVIES_SUCCESS, payload: data.results})
     })
-    .catch(err => dispatch({type: actionTypes.FETCHING_MOVIES_FAILURE, payload: 'Could not get movies at this time'}))
+    .catch(err => dispatch({type: actionTypes.FETCHING_MOVIES_FAILURE, payload: err}))
   }
 }
 

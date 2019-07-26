@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetch_characters } from "../store/actions/Actions";
 
-import Character from "../components/Characters/Character";
+import CharacterList from "../components/Characters/CharacterList";
 
 const CharactersView = props => {
   const isFetchingCharacters = useSelector(
@@ -27,6 +27,7 @@ const CharactersView = props => {
   return (
     <div>
       <h1>Characters</h1>
+      <CharacterList characters={characters} />
     </div>
   );
 };

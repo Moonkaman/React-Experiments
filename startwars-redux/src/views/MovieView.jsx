@@ -7,6 +7,7 @@ import { fetch_movie, fetch_movie_characters } from "../store/actions/Actions";
 
 // Components
 import Character from "../components/Characters/Character";
+import MovieTab from "../components/Movies/MovieTab";
 
 const MovieView = props => {
   const fetchingMovie = useSelector(
@@ -32,12 +33,19 @@ const MovieView = props => {
 
   const getChars = _ => {
     dispatch(fetch_movie_characters(movie.characters));
-    setHasChars(true);
   };
 
   if (!fetchingMovie && movie) {
-    return (
-      <div>
+    return <MovieTab movie={movie} getChars={getChars} chars={chars} />;
+  } else {
+    return <Spinner animation="border" variant="primary" />;
+  }
+};
+
+export default MovieView;
+
+{
+  /* <div>
         <h1>
           {movie.title} Episode {movie.episode_id}
         </h1>
@@ -55,11 +63,5 @@ const MovieView = props => {
         ) : (
           <button onClick={getChars}>Get List of Characters</button>
         )}
-      </div>
-    );
-  } else {
-    return <Spinner animation="border" variant="primary" />;
-  }
-};
-
-export default MovieView;
+      </div> */
+}
