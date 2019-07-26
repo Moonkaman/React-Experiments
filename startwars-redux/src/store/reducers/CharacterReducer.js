@@ -11,6 +11,8 @@ const initialState  = {
   fetching_character_homeworld_success: false,
   fetching_character_homeworld_error: null,
   characters: [],
+  next: null,
+  prev: null,
   character: null,
   character_homeworld: null
 }
@@ -69,7 +71,9 @@ export default(state = initialState, action) => {
       return {
         ...state,
         is_fetching_characters: false,
-        characters: action.payload
+        characters: action.payload.results,
+        next: action.payload.next,
+        prev: action.payload.previous
       }
 
     default:

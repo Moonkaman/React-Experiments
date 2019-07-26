@@ -61,12 +61,12 @@ export const fetch_character = id => {
   }
 }
 
-export const fetch_characters = () => {
+export const fetch_characters = (url=`${baseURL}/people`) => {
   return dispatch => {
     dispatch({type: actionTypes.FETCHING_CHARACTERS});
 
-    fetch(`${baseURL}/people`)
+    fetch(url)
     .then(res => res.json())
-    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTERS_SUCCESS, payload: data.results}))
+    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTERS_SUCCESS, payload: data}))
   }
 }
