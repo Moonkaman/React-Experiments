@@ -14,7 +14,8 @@ const initialState  = {
   next: null,
   prev: null,
   character: null,
-  character_homeworld: null
+  character_homeworld: null,
+  character_species: null
 }
 
 export default(state = initialState, action) => {
@@ -74,6 +75,12 @@ export default(state = initialState, action) => {
         characters: action.payload.results,
         next: action.payload.next,
         prev: action.payload.previous
+      }
+
+    case actionTypes.FETCHING_CHARACTER_SPECIES_SUCCESS:
+      return {
+        ...state,
+        character_species: action.payload
       }
 
     default:

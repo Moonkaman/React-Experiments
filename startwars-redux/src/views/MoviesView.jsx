@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetch_movies } from "../store/actions/Actions";
+import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
+import { css } from "emotion";
 
 import MovieList from "../components/Movies/MoviesList";
+
+const cardHeaderCSS = css`
+  & h3 {
+    font-weight: normal;
+    margin: 0px;
+  }
+`;
 
 const MoviesView = props => {
   const movies = useSelector(state => state.movie_reducers.movies);
@@ -23,10 +32,12 @@ const MoviesView = props => {
 
   if (!fetchingMovies) {
     return (
-      <div>
-        <h2>Movies</h2>
-        <MovieList movies={movies} />
-      </div>
+      <Card>
+        <Card.Header className={cardHeaderCSS}>
+          <h3>Movies</h3>
+        </Card.Header>
+        <MovieList movies={movies} groupVariant="flush" />
+      </Card>
     );
   } else {
     return <Spinner animation="border" variant="primary" />;

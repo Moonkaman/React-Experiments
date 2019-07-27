@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
+import { LinkContainer } from "react-router-bootstrap";
 import { css } from "emotion";
 
 const listGroupItemCss = css`
   display: flex;
   justify-content: space-between;
 
-  & h4 {
+  & h6 {
     margin: 0px;
-    font-weight: normal;
+    line-height: 24px;
   }
 
   & p {
@@ -19,17 +19,17 @@ const listGroupItemCss = css`
 
 const Movie = props => {
   return (
-    <ListGroup>
+    <ListGroup variant={props.groupVariant}>
       {props.movies.map(movie => (
-        <Link
+        <LinkContainer
           key={movie.episode_id}
           to={`/movies/${movie.url.replace(/[^0-9]/g, "")}`}
         >
           <ListGroup.Item action className={listGroupItemCss}>
-            <h4>{movie.title}</h4>
+            <h6>{movie.title}</h6>
             <p>{movie.release_date}</p>
           </ListGroup.Item>
-        </Link>
+        </LinkContainer>
       ))}
     </ListGroup>
   );

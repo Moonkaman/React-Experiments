@@ -51,11 +51,18 @@ export const fetch_character = id => {
     fetch(`${baseURL}/people/${id}`)
     .then(res => res.json())
     .then(data => {
+      dispatch({type: actionTypes.FETCHING_CHARACTER_HOMEWORLD});
       fetch(data.homeworld)
       .then(res => res.json())
       .then(homeworld => {
-        dispatch({type: actionTypes.FETCHING_CHARACTER_SUCCESS, payload: data})
-        dispatch({type: actionTypes.FETCHING_CHARACTER_HOMEWORLD_SUCCESS, payload: homeworld})
+        dispatch({type: actionTypes.FETCHING_CHARACTER_SPECIES});
+        fetch(data.species)
+        .then(res => res.json())
+        .then(species => {
+          dispatch({type: actionTypes.FETCHING_CHARACTER_SUCCESS, payload: data})
+          dispatch({type: actionTypes.FETCHING_CHARACTER_HOMEWORLD_SUCCESS, payload: homeworld})
+          dispatch({type: actionTypes.FETCHING_CHARACTER_SPECIES_SUCCESS, payload: species})
+        })
       })
   })
   }

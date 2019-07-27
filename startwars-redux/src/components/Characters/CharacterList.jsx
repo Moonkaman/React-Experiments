@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 import { css } from "emotion";
+import { LinkContainer } from "react-router-bootstrap";
 
 const listGroupItemCss = css`
   display: flex;
   justify-content: space-between;
 
-  & h4 {
+  & h6 {
     margin: 0px;
-    font-weight: normal;
+    line-height: 24px;
   }
 
   & p {
@@ -20,17 +20,17 @@ const listGroupItemCss = css`
 const CharacterList = props => {
   return (
     <div>
-      <ListGroup>
+      <ListGroup variant={props.groupVariant}>
         {props.characters.map(character => (
-          <Link
+          <LinkContainer
             key={character.name + character.height}
             to={`/characters/${character.url.replace(/[^0-9]/g, "")}`}
           >
             <ListGroup.Item action className={listGroupItemCss}>
-              <h4>{character.name}</h4>
+              <h6>{character.name}</h6>
               <p>{character.gender}</p>
             </ListGroup.Item>
-          </Link>
+          </LinkContainer>
         ))}
       </ListGroup>
     </div>

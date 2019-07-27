@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BounceLoader } from "react-spinners";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { css } from "emotion";
 
 import { fetch_characters } from "../store/actions/Actions";
@@ -31,6 +32,7 @@ const CharactersView = props => {
   );
 
   const buttonToolbarCSS = css`
+    border-top: 1px dashed rgba(0, 0, 0, 0.125);
     display: flex;
     justify-content: ${next && prev
       ? "space-between"
@@ -38,6 +40,17 @@ const CharactersView = props => {
       ? "flex-end"
       : "flex-start"};
     padding: 10px;
+  `;
+
+  const cardHeaderCSS = css`
+    & h3 {
+      font-weight: normal;
+      margin: 0px;
+    }
+  `;
+
+  const spinnerCSS = css`
+    margin: 0 auto;
   `;
 
   const changePage = dir => {
@@ -49,12 +62,14 @@ const CharactersView = props => {
   };
 
   if (characters.length === 0 || isFetchingCharacters) {
-    return <BounceLoader />;
+    return <BounceLoader className={spinnerCSS} />;
   } else {
     return (
-      <div>
-        <h1>Characters</h1>
-        <CharacterList characters={characters} />
+      <Card className={cardHeaderCSS}>
+        <Card.Header>
+          <h3>Characters</h3>
+        </Card.Header>
+        <CharacterList characters={characters} groupVariant="flush" />
         <ButtonToolbar className={buttonToolbarCSS}>
           {prev && (
             <Button variant="primary" onClick={_ => changePage("prev")}>
@@ -67,7 +82,7 @@ const CharactersView = props => {
             </Button>
           )}
         </ButtonToolbar>
-      </div>
+      </Card>
     );
   }
 };

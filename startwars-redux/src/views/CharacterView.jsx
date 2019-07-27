@@ -14,6 +14,9 @@ const CharacterView = props => {
   const homeworld = useSelector(
     state => state.character_reducer.character_homeworld
   );
+  const species = useSelector(
+    state => state.character_reducer.character_species
+  );
 
   useEffect(
     _ => {
@@ -28,6 +31,7 @@ const CharacterView = props => {
         <h1>{character.name}</h1>
         <h2>Gender: {character.gender}</h2>
         <h2>Homeworld: {homeworld ? homeworld.name : "Loading..."}</h2>
+        <h2>Species: {species ? species.name : "Loading..."}</h2>
       </div>
     );
   } else {

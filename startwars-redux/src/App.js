@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
+import { css } from "emotion";
 
 import "./App.css";
 
@@ -11,6 +12,10 @@ import MoviesView from "./views/MoviesView";
 import MovieView from "./views/MovieView";
 import CharactersView from "./views/CharactersView";
 import CharacterView from "./views/CharacterView";
+
+const containerCss = css`
+  padding-top: 50px;
+`;
 
 function App() {
   return (
@@ -32,7 +37,7 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Container>
+      <Container className={containerCss}>
         <Route exact path="/movies" component={MoviesView} />
         <Route exact path="/movies/:id" component={MovieView} />
         <Route exact path="/characters" component={CharactersView} />
