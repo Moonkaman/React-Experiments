@@ -12,6 +12,8 @@ import MoviesView from "./views/MoviesView";
 import MovieView from "./views/MovieView";
 import CharactersView from "./views/CharactersView";
 import CharacterView from "./views/CharacterView";
+import PlanetsView from './views/PlanetsView';
+import PlanetView from './views/PlanetView';
 
 const containerCss = css`
   padding-top: 50px;
@@ -34,6 +36,12 @@ function App() {
             <LinkContainer to="/characters">
               <Nav.Link>Characters</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/planets">
+              <Nav.Link>Planets</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/species">
+              <Nav.Link>Species</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -42,6 +50,8 @@ function App() {
         <Route exact path="/movies/:id" component={MovieView} />
         <Route exact path="/characters" component={CharactersView} />
         <Route exact path="/characters/:id" component={CharacterView} />
+        <Route exact path="/planets" component={PlanetsView} />
+        <Route exact path="/planets/:id" component={PlanetView} />
       </Container>
     </div>
   );

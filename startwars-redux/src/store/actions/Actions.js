@@ -53,6 +53,10 @@ export const fetch_movie_planets = urls => {
   }
 }
 
+export const reset_movie_attributes = _ => {
+  return { type: actionTypes.RESET_MOVIE_ATTRIBUTES };
+}
+
 // Character Action Creators
 
 export const fetch_character = id => {
@@ -86,4 +90,21 @@ export const fetch_characters = (url=`${baseURL}/people`) => {
     .then(res => res.json())
     .then(data => dispatch({type: actionTypes.FETCHING_CHARACTERS_SUCCESS, payload: data}))
   }
+}
+
+export const fetch_character_movies = urls => {
+  return dispatch => {
+    
+    dispatch({type: actionTypes.FETCHING_CHARACTER_MOVIES});
+    const movies = []
+    urls.forEach(url => {
+      movies.push(fetch(url).then(res => res.json()).then(data => data))
+    })
+    Promise.all(movies)
+    .then(data => dispatch({type: actionTypes.FETCHING_CHARACTER_MOVIES_SUCCESS, payload: data}))
+  }
+}
+
+export const reset_character_attributes = _ => {
+  return { type: actionTypes.RESET_CHARACTER_ATTRIBUTES };
 }

@@ -65,6 +65,13 @@ export default(state = initialState, action) => {
         fetching_movie_planets_error: action.payload
       }
 
+    case actionTypes.RESET_MOVIE_ATTRIBUTES:
+      return {
+        ...state,
+        movie_characters: [],
+        movie_planets: []
+      }
+
     default:
       return state;
   }

@@ -6,7 +6,8 @@ import Spinner from "react-bootstrap/Spinner";
 import {
   fetch_movie,
   fetch_movie_characters,
-  fetch_movie_planets
+  fetch_movie_planets,
+  reset_movie_attributes
 } from "../store/actions/Actions";
 
 // Components
@@ -26,6 +27,10 @@ const MovieView = props => {
   useEffect(
     _ => {
       dispatch(fetch_movie(props.match.params.id));
+
+      return _ => {
+        dispatch(reset_movie_attributes());
+      };
     },
     [dispatch, props.match.params.id]
   );

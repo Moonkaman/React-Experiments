@@ -10,12 +10,16 @@ const initialState  = {
   is_fetching_character_homeworld: false,
   fetching_character_homeworld_success: false,
   fetching_character_homeworld_error: null,
+  is_fetching_character_movies: false,
+  fetching_character_movies_success: false,
+  fetching_character_movies_error: null,
   characters: [],
   next: null,
   prev: null,
   character: null,
   character_homeworld: null,
-  character_species: null
+  character_species: null,
+  character_movies: []
 }
 
 export default(state = initialState, action) => {
@@ -80,6 +84,34 @@ export default(state = initialState, action) => {
       return {
         ...state,
         character_species: action.payload
+      }
+
+    case actionTypes.FETCHING_CHARACTER_MOVIES:
+      return {
+        ...state,
+        is_fetching_character_movies: true
+      }
+
+    case actionTypes.FETCHING_CHARACTER_MOVIES_SUCCESS:
+      return {
+        ...state,
+        is_fetching_character_movies: false,
+        character_movies: action.payload
+      }
+
+    case actionTypes.FETCHING_CHARACTER_MOVIES_FAILURE:
+      return {
+        ...state,
+        is_fetching_character_movies: false,
+        fetching_character_movies_error: action.payload
+      }
+
+    case actionTypes.RESET_CHARACTER_ATTRIBUTES:
+      return {
+        ...state,
+        character_homeworld: null,
+        character_movies: [],
+        character_species: null
       }
 
     default:

@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetch_character } from "../store/actions/Actions";
+import {
+  fetch_character,
+  fetch_character_movies,
+  reset_character_attributes
+} from "../store/actions/Actions";
+
+import CharacterTab from "../components/Characters/CharacterTab";
 
 const CharacterView = props => {
   const isFetchingCharacter = useSelector(
@@ -17,22 +23,29 @@ const CharacterView = props => {
   const species = useSelector(
     state => state.character_reducer.character_species
   );
+  const movies = useSelector(state => state.character_reducer.character_movies);
 
   useEffect(
     _ => {
       dispatch(fetch_character(props.match.params.id));
+
+      return _ => {
+        dispatch(reset_character_attributes());
+      };
     },
     [dispatch, props.match.params.id]
   );
 
-  if (character && !isFetchingCharacter) {
+  const getMovies = _ => {
+    dispatch(fetch_character_movies(character.films));
+  };
+
+  if (character && species && homeworld && !isFetchingCharacter) {
     return (
-      <div>
-        <h1>{character.name}</h1>
-        <h2>Gender: {character.gender}</h2>
-        <h2>Homeworld: {homeworld ? homeworld.name : "Loading..."}</h2>
-        <h2>Species: {species ? species.name : "Loading..."}</h2>
-      </div>
+      <CharacterTab
+        getMovies={getMovies}
+        character={{ ...character, species, homeworld, movies }}
+      />
     );
   } else {
     return <h1>Loading...</h1>;
