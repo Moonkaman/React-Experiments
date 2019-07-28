@@ -23,6 +23,11 @@ const cardSectionCss = css`
   & p {
     margin: 0px;
   }
+
+  & h6 {
+    margin: 0px;
+    line-height: 24px;
+  }
 `;
 
 const MovieTab = props => {
@@ -61,15 +66,15 @@ const MovieTab = props => {
               <Card.Title>More Info</Card.Title>
               <ListGroup>
                 <ListGroup.Item className={cardSectionCss}>
-                  <p>Director</p>
+                  <h6>Director</h6>
                   <p>{props.movie.director}</p>
                 </ListGroup.Item>
                 <ListGroup.Item className={cardSectionCss}>
-                  <p>Producer</p>
+                  <h6>Producer</h6>
                   <p>{props.movie.producer}</p>
                 </ListGroup.Item>
                 <ListGroup.Item className={cardSectionCss}>
-                  <p>Release Date</p>
+                  <h6>Release Date</h6>
                   <p>{props.movie.release_date}</p>
                 </ListGroup.Item>
               </ListGroup>
