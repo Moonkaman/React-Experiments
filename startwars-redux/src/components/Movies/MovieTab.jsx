@@ -3,11 +3,11 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { GridLoader } from "react-spinners";
 import { css } from "emotion";
-import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import CharacterList from "../Characters/CharacterList";
+import PlanetsList from "../Planets/PlanetsList";
 
 const tabCss = css`
   text-align: left;
@@ -31,9 +31,18 @@ const MovieTab = props => {
   const handleTabSelect = k => {
     switch (k) {
       case "characters":
-        if (props.chars.length == 0) {
+        if (props.chars.length === 0) {
           props.getChars();
         }
+        break;
+
+      case "planets":
+        if (props.planets.length === 0) {
+          props.getPlanets();
+        }
+        break;
+
+      default:
     }
     setKey(k);
   };
@@ -78,7 +87,14 @@ const MovieTab = props => {
           </Card>
         </Tab>
         <Tab eventKey="planets" title="Planets" className={tabCss}>
-          <h2>Planets in {props.movie.title}</h2>
+          <Card>
+            <Card.Header>Planets in {props.movie.title}</Card.Header>
+            {props.planets.length === 0 ? (
+              <GridLoader />
+            ) : (
+              <PlanetsList planets={props.planets} groupVariant="flush" />
+            )}
+          </Card>
         </Tab>
       </Tabs>
     </div>

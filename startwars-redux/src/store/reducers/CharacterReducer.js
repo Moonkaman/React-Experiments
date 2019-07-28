@@ -68,7 +68,6 @@ export default(state = initialState, action) => {
       }
 
     case actionTypes.FETCHING_CHARACTERS_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         is_fetching_characters: false,

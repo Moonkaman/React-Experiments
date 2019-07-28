@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 
 // Actions
-import { fetch_movie, fetch_movie_characters } from "../store/actions/Actions";
+import {
+  fetch_movie,
+  fetch_movie_characters,
+  fetch_movie_planets
+} from "../store/actions/Actions";
 
 // Components
-import Character from "../components/Characters/Character";
 import MovieTab from "../components/Movies/MovieTab";
 
 const MovieView = props => {
@@ -15,15 +18,11 @@ const MovieView = props => {
   );
   const movie = useSelector(state => state.movie_reducers.movie);
   const chars = useSelector(state => state.movie_reducers.movie_characters);
-  const isFetchingMovieChars = useSelector(
-    state => state.movie_reducers.is_fetching_movie_characters
+  const movie_planets = useSelector(
+    state => state.movie_reducers.movie_planets
   );
 
-  const [hasChars, setHasChars] = useState(false);
-
   const dispatch = useDispatch();
-  console.log(movie);
-  console.log(fetchingMovie);
   useEffect(
     _ => {
       dispatch(fetch_movie(props.match.params.id));
@@ -35,33 +34,23 @@ const MovieView = props => {
     dispatch(fetch_movie_characters(movie.characters));
   };
 
+  const getPlanets = _ => {
+    dispatch(fetch_movie_planets(movie.planets));
+  };
+
   if (!fetchingMovie && movie) {
-    return <MovieTab movie={movie} getChars={getChars} chars={chars} />;
+    return (
+      <MovieTab
+        movie={movie}
+        getChars={getChars}
+        chars={chars}
+        getPlanets={getPlanets}
+        planets={movie_planets}
+      />
+    );
   } else {
     return <Spinner animation="border" variant="primary" />;
   }
 };
 
 export default MovieView;
-
-{
-  /* <div>
-        <h1>
-          {movie.title} Episode {movie.episode_id}
-        </h1>
-        <h3>Opening Text</h3>
-        <p>{movie.opening_crawl}</p>
-        <h3>Characters: </h3>
-        {hasChars ? (
-          <div>
-            {isFetchingMovieChars ? (
-              <Spinner animation="border" variant="primary" />
-            ) : (
-              chars.map(char => <Character character={char} />)
-            )}
-          </div>
-        ) : (
-          <button onClick={getChars}>Get List of Characters</button>
-        )}
-      </div> */
-}

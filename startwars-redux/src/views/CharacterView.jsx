@@ -22,7 +22,7 @@ const CharacterView = props => {
     _ => {
       dispatch(fetch_character(props.match.params.id));
     },
-    [dispatch]
+    [dispatch, props.match.params.id]
   );
 
   if (character && !isFetchingCharacter) {

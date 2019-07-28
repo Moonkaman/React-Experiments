@@ -2,9 +2,7 @@ import * as actionTypes from './ActionTypes';
 
 const baseURL = 'https://swapi.co/api'
 
-const options = {
-  mode: 'no-cors'
-}
+// Movie Action Creators
 
 export const fetch_movies = () => {
   return dispatch => {
@@ -24,7 +22,6 @@ export const fetch_movie = id => {
     fetch(`${baseURL}/films/${id}/`)
     .then(res => res.json())
     .then(data => {
-      // console.log(data);
       dispatch({type: actionTypes.FETCHING_MOVIE_SUCCESS, payload: data})
     })
     .catch(err => dispatch({type: actionTypes.FETCHING_MOVIE_FAILURE, payload: 'Could not get movie at this time'}))
@@ -40,6 +37,19 @@ export const fetch_movie_characters = urls => {
     })
     Promise.all(characters)
     .then(data => dispatch({type: actionTypes.FETCHING_MOVIE_CHARACTERS_SUCCESS, payload: data}))
+  }
+}
+
+export const fetch_movie_planets = urls => {
+  return dispatch => {
+    
+    dispatch({type: actionTypes.FETCHING_MOVIE_PLANETS});
+    const planets = []
+    urls.forEach(url => {
+      planets.push(fetch(url).then(res => res.json()).then(data => data))
+    })
+    Promise.all(planets)
+    .then(data => dispatch({type: actionTypes.FETCHING_MOVIE_PLANETS_SUCCESS, payload: data}))
   }
 }
 

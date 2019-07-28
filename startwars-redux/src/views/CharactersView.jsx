@@ -22,9 +22,7 @@ const CharactersView = props => {
 
   useEffect(
     _ => {
-      console.log(characters);
       if (characters.length === 0) {
-        console.log("fire");
         dispatch(fetch_characters());
       }
     },
