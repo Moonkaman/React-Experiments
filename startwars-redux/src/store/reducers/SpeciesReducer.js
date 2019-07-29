@@ -13,10 +13,14 @@ const initialState  = {
   is_fetching_species_movies: false,
   fetching_species_movies_success: false,
   fetching_species_movies_error: null,
+  is_fetching_species_homeworld: false,
+  fetching_species_homeworld_success: false,
+  fetching_species_homeworld_error: null,
   all_species: [],
   species: null,
   species_movies: [],
   species_characters: [],
+  species_homeworld: null,
   next: null,
   prev: null
 }
@@ -98,11 +102,39 @@ export default(state = initialState, action) => {
         species_movies: action.payload,
       }
 
-    case actionTypes.FETCHING_SPECIES_CHARACTERS_FAILURE:
+    case actionTypes.FETCHING_SPECIES_MOVIES_FAILURE:
       return {
         ...state,
         is_fetching_species_movies: false,
         fetching_species_movies_error: action.payload
+      }
+
+    case actionTypes.FETCHING_SPECIES_HOMEWORLD:
+      return {
+        ...state,
+        is_fetching_species_homeworld: true
+      }
+
+    case actionTypes.FETCHING_SPECIES_HOMEWORLD_SUCCESS:
+      return {
+        ...state,
+        is_fetching_species_homeworld: false,
+        species_homeworld: action.payload
+      }
+
+    case actionTypes.FETCHING_SPECIES_HOMEWORLD_FAILURE:
+      return {
+        ...state,
+        is_fetching_species_homeworld: false,
+        fetching_species_homeworld_error: action.payload
+      }
+
+    case actionTypes.RESET_SPECIES_ATTRIBUTES:
+      return {
+        ...state,
+        species_characters: [],
+        species_homeworld: null,
+        species_movies: []
       }
 
     default:

@@ -167,3 +167,57 @@ export const fetch_all_species = (url=`${baseURL}/species`) => {
     .then(data => dispatch({type: actionTypes.FETCHING_ALL_SPECIES_SUCCESS, payload: data}))
   }
 }
+
+export const fetch_species = id => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_SPECIES})
+    fetch(`${baseURL}/species/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      dispatch({type: actionTypes.FETCHING_SPECIES_HOMEWORLD})
+      fetch(data.homeworld)
+      .then(res => res.json())
+      .then(homeworld => {
+        dispatch({type: actionTypes.FETCHING_SPECIES_SUCCESS, payload: data})
+        dispatch({type: actionTypes.FETCHING_SPECIES_HOMEWORLD_SUCCESS, payload: homeworld})
+      })
+    })
+  }
+}
+
+export const fetch_species_movies = urls => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_SPECIES_MOVIES});
+    const movies = []
+    urls.forEach(url => {
+      movies.push(fetch(url).then(res => res.json()).then(data => data))
+    })
+    Promise.all(movies)
+    .then(data => dispatch({type: actionTypes.FETCHING_SPECIES_MOVIES_SUCCESS, payload: data}))
+  }
+}
+
+export const fetch_species_characters = urls => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_SPECIES_CHARACTERS});
+    const characters = []
+    urls.forEach(url => {
+      characters.push(fetch(url).then(res => res.json()).then(data => data))
+    })
+    Promise.all(characters)
+    .then(data => dispatch({type: actionTypes.FETCHING_SPECIES_CHARACTERS_SUCCESS, payload: data}))
+  }
+}
+
+export const fetch_species_homeworld = url => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_SPECIES_HOMEWORLD})
+    fetch(url)
+    .then(res => res.json())
+    .then(data => dispatch({type: actionTypes.FETCHING_SPECIES_HOMEWORLD_SUCCESS, payload: data}))
+  }
+}
+
+export const reset_species_attributes = _ => {
+  return { type: actionTypes.RESET_SPECIES_ATTRIBUTES };
+}
