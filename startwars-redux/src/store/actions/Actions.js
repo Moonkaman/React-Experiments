@@ -120,6 +120,15 @@ export const fetch_planet = id => {
   }
 }
 
+export const fetch_planets = (url=`${baseURL}/planets`) => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_PLANETS});
+    fetch(url)
+    .then(res => res.json())
+    .then(data => dispatch({type: actionTypes.FETCHING_PLANETS_SUCCESS, payload: data}))
+  }
+}
+
 export const fetch_planet_residents = urls => {
   return dispatch => {
     dispatch({type: actionTypes.FETCHING_PLANET_RESIDENTS});

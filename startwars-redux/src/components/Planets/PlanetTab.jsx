@@ -101,7 +101,13 @@ const PlanetTab = props => {
           <Card>
             <Card.Header>Residents of {props.planet.name}</Card.Header>
             {props.planet.residents.length === 0 ? (
-              <GridLoader />
+              props.noResidents ? (
+                <Card.Body>
+                  <Card.Title>This planet has no residents</Card.Title>
+                </Card.Body>
+              ) : (
+                <GridLoader />
+              )
             ) : (
               <CharacterList
                 characters={props.planet.residents}
@@ -114,7 +120,13 @@ const PlanetTab = props => {
           <Card>
             <Card.Header>Movies Featuring {props.planet.name}</Card.Header>
             {props.planet.movies.length === 0 ? (
-              <GridLoader />
+              props.noMovies ? (
+                <Card.Body>
+                  <Card.Title>This planet has no movie appearances</Card.Title>
+                </Card.Body>
+              ) : (
+                <GridLoader />
+              )
             ) : (
               <MoviesList movies={props.planet.movies} groupVariant="flush" />
             )}

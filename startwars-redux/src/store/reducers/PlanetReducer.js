@@ -16,7 +16,9 @@ const initialState  = {
   planet: null,
   planet_residents: [],
   planet_movies: [],
-  planets: []
+  planets: [],
+  next: null,
+  prev: null
 }
 
 export default(state = initialState, action) => {
@@ -52,7 +54,9 @@ export default(state = initialState, action) => {
       return {
         ...state,
         is_fetching_planets: false,
-        planets: action.payload
+        planets: action.payload.results,
+        next: action.payload.next,
+        prev: action.payload.previous
       }
 
     case actionTypes.FETCHING_PLANETS_FAILURE:

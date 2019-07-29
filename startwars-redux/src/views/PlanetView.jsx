@@ -34,6 +34,7 @@ const PlanetView = props => {
   };
 
   const getMovies = _ => {
+    console.log(planet);
     dispatch(fetch_planet_movies(planet.films));
   };
 
@@ -43,6 +44,8 @@ const PlanetView = props => {
         getResidents={getResidents}
         getMovies={getMovies}
         planet={{ ...planet, residents, movies }}
+        noMovies={planet.films.length === 0}
+        noResidents={planet.residents.length === 0}
       />
     );
   } else {
