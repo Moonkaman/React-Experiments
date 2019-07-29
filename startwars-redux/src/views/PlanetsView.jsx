@@ -75,7 +75,7 @@ const PlanetsView = props => {
             </Button>
           )}
           {next && (
-            <Button variant="primary" onClick={_ => changePage("next")}>
+            <Button variant="flat" onClick={_ => changePage("next")}>
               Next Page
             </Button>
           )}
