@@ -108,3 +108,42 @@ export const fetch_character_movies = urls => {
 export const reset_character_attributes = _ => {
   return { type: actionTypes.RESET_CHARACTER_ATTRIBUTES };
 }
+
+// Planet Action Creators
+
+export const fetch_planet = id => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_PLANET})
+    fetch(`${baseURL}/planets/${id}`)
+    .then(res => res.json())
+    .then(data => dispatch({type: actionTypes.FETCHING_PLANET_SUCCESS, payload: data}))
+  }
+}
+
+export const fetch_planet_residents = urls => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_PLANET_RESIDENTS});
+    const residents = []
+    urls.forEach(url => {
+      residents.push(fetch(url).then(res => res.json()).then(data => data))
+    })
+    Promise.all(residents)
+    .then(data => dispatch({type: actionTypes.FETCHING_PLANET_RESIDENTS_SUCCESS, payload: data}))
+  }
+}
+
+export const fetch_planet_movies = urls => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_PLANET_MOVIES});
+    const movies = []
+    urls.forEach(url => {
+      movies.push(fetch(url).then(res => res.json()).then(data => data))
+    })
+    Promise.all(movies)
+    .then(data => dispatch({type: actionTypes.FETCHING_PLANET_MOVIES_SUCCESS, payload: data}))
+  }
+}
+
+export const reset_planet_attributes = _ => {
+  return { type: actionTypes.RESET_PLANET_ATTRIBUTES };
+}

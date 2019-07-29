@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import CharacterList from "../Characters/CharacterList";
-import PlanetsList from "../Planets/PlanetsList";
+import MoviesList from "../Movies/MoviesList";
 
 const tabCss = css`
   text-align: left;
@@ -35,15 +35,15 @@ const PlanetTab = props => {
 
   const handleTabSelect = k => {
     switch (k) {
-      case "characters":
-        if (props.chars.length === 0) {
-          props.getChars();
+      case "residents":
+        if (props.planet.residents.length === 0) {
+          props.getResidents();
         }
         break;
 
-      case "planets":
-        if (props.planets.length === 0) {
-          props.getPlanets();
+      case "movies":
+        if (props.planet.movies.length === 0) {
+          props.getMovies();
         }
         break;
 
@@ -57,7 +57,67 @@ const PlanetTab = props => {
       <Tabs activeKey={key} onSelect={handleTabSelect}>
         <Tab eventKey="general" title="General Info" className={tabCss}>
           <Card>
-            <Card.title />
+            <Card.Header>{props.planet.name}</Card.Header>
+            <Card.Body>
+              <Card.Title>Info</Card.Title>
+              <ListGroup>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Population</h6>
+                  <p>{props.planet.population}</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Terrain</h6>
+                  <p>{props.planet.terrain}</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Climate</h6>
+                  <p>{props.planet.climate}</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Gravity</h6>
+                  <p>{props.planet.gravity}</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Surface Water</h6>
+                  <p>{props.planet.surface_water}%</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Diameter</h6>
+                  <p>{props.planet.diameter}</p>
+                </ListGroup.Item>
+                <ListGroup.Item action className={cardSectionCss}>
+                  <h6>Rotation Period</h6>
+                  <p>{props.planet.rotation_period}d</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={cardSectionCss}>
+                  <h6>Orbial Period</h6>
+                  <p>{props.planet.orbital_period}d</p>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Tab>
+        <Tab eventKey="residents" title="Residents" className={tabCss}>
+          <Card>
+            <Card.Header>Residents of {props.planet.name}</Card.Header>
+            {props.planet.residents.length === 0 ? (
+              <GridLoader />
+            ) : (
+              <CharacterList
+                characters={props.planet.residents}
+                groupVariant="flush"
+              />
+            )}
+          </Card>
+        </Tab>
+        <Tab eventKey="movies" title="Movies" className={tabCss}>
+          <Card>
+            <Card.Header>Movies Featuring {props.planet.name}</Card.Header>
+            {props.planet.movies.length === 0 ? (
+              <GridLoader />
+            ) : (
+              <MoviesList movies={props.planet.movies} groupVariant="flush" />
+            )}
           </Card>
         </Tab>
       </Tabs>
