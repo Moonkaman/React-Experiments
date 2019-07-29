@@ -49,7 +49,7 @@ const PlanetView = props => {
       />
     );
   } else {
-    return <Spinner />;
+    return <Spinner animation="border" variant="primary" />;
   }
 };
 

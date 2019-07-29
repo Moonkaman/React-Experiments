@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import { css } from "emotion";
 
 import NavBar from './components/NavBar/NavBar';
+import HomeView from './views/HomeView';
 import MoviesView from "./views/MoviesView";
 import MovieView from "./views/MovieView";
 import CharactersView from "./views/CharactersView";
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Container className={containerCss}>
+        <Route exact path="/" component={HomeView} />
         <Route exact path="/movies" component={MoviesView} />
         <Route exact path="/movies/:id" component={MovieView} />
         <Route exact path="/characters" component={CharactersView} />

@@ -1,18 +1,19 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import NavLink from "react-bootstrap/NavLink";
 import { LinkContainer } from "react-router-bootstrap";
 
 const NavBar = () => {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand>SWAPI App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <LinkContainer exact to="/">
-              <Nav.Link>Home</Nav.Link>
+              <NavLink>Home</NavLink>
             </LinkContainer>
             <LinkContainer to="/movies">
               <Nav.Link>Movies</Nav.Link>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import { GridLoader } from "react-spinners";
+import Spinner from "react-bootstrap/Spinner";
 import { css } from "emotion";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -114,7 +114,7 @@ const CharacterTab = props => {
           <Card>
             <Card.Header>Movies including {props.character.name}</Card.Header>
             {props.character.movies.length === 0 ? (
-              <GridLoader />
+              <Spinner animation="border" variant="primary" />
             ) : (
               <MoviesList
                 movies={props.character.movies}

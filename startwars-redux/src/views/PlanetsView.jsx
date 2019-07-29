@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BounceLoader } from "react-spinners";
+import Spinner from "react-bootstrap/Spinner";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -60,7 +60,7 @@ const PlanetsView = props => {
   };
 
   if (planets.length === 0 || isFetchingPlanets) {
-    return <BounceLoader className={spinnerCSS} />;
+    return <Spinner animation="border" variant="primary" />;
   } else {
     return (
       <Card className={cardHeaderCSS}>
@@ -75,7 +75,7 @@ const PlanetsView = props => {
             </Button>
           )}
           {next && (
-            <Button variant="flat" onClick={_ => changePage("next")}>
+            <Button variant="primary" onClick={_ => changePage("next")}>
               Next Page
             </Button>
           )}

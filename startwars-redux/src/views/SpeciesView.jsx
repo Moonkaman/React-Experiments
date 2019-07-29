@@ -45,7 +45,6 @@ const SpeciesView = props => {
   if (species && homeworld) {
     return (
       <div>
-        <h1>test</h1>
         <SpeciesTab
           getCharacters={getCharacters}
           getMovies={getMovies}
@@ -56,7 +55,7 @@ const SpeciesView = props => {
       </div>
     );
   } else {
-    return <Spinner />;
+    return <Spinner animation="border" variant="primary" />;
   }
 };
 

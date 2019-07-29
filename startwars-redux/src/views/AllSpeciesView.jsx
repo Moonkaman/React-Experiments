@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BounceLoader } from "react-spinners";
+import Spinner from "react-bootstrap/Spinner";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -60,7 +60,7 @@ const AllSpeciesView = props => {
   };
 
   if (all_species.length === 0 || isFetchingAllSpecies) {
-    return <BounceLoader className={spinnerCSS} />;
+    return <Spinner animation="border" variant="primary" />;
   } else {
     return (
       <Card className={cardHeaderCSS}>

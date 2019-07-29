@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import { GridLoader } from "react-spinners";
+import Spinner from "react-bootstrap/Spinner";
 import { css } from "emotion";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -122,7 +122,7 @@ const SpeciesTab = props => {
                   </Card.Title>
                 </Card.Body>
               ) : (
-                <GridLoader />
+                <Spinner animation="border" variant="primary" />
               )
             ) : (
               <CharacterList
@@ -141,7 +141,7 @@ const SpeciesTab = props => {
                   <Card.Title>This species has no movie appearances</Card.Title>
                 </Card.Body>
               ) : (
-                <GridLoader />
+                <Spinner animation="border" variant="primary" />
               )
             ) : (
               <MoviesList movies={props.species.movies} groupVariant="flush" />

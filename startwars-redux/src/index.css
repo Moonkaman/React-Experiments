@@ -10,14 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-/* Bootstrap Theme */
-
-.btn-flat {
-  background-color: purple;
-  color: white;
+.spinner-border {
+  margin: 20px auto;
+  display: block;
 }
