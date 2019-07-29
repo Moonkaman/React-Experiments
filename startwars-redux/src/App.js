@@ -14,6 +14,8 @@ import CharactersView from "./views/CharactersView";
 import CharacterView from "./views/CharacterView";
 import PlanetsView from './views/PlanetsView';
 import PlanetView from './views/PlanetView';
+import AllSpeciesView from './views/AllSpeciesView';
+import SpeciesView from './views/SpeciesView';
 
 const containerCss = css`
   padding-top: 50px;
@@ -52,6 +54,8 @@ function App() {
         <Route exact path="/characters/:id" component={CharacterView} />
         <Route exact path="/planets" component={PlanetsView} />
         <Route exact path="/planets/:id" component={PlanetView} />
+        <Route exact path="/species" component={AllSpeciesView} />
+        <Route exact path="/species/:id" component={SpeciesView} />
       </Container>
     </div>
   );

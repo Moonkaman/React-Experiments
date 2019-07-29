@@ -156,3 +156,14 @@ export const fetch_planet_movies = urls => {
 export const reset_planet_attributes = _ => {
   return { type: actionTypes.RESET_PLANET_ATTRIBUTES };
 }
+
+// Species Action Creators
+
+export const fetch_all_species = (url=`${baseURL}/species`) => {
+  return dispatch => {
+    dispatch({type: actionTypes.FETCHING_ALL_SPECIES});
+    fetch(url)
+    .then(res => res.json())
+    .then(data => dispatch({type: actionTypes.FETCHING_ALL_SPECIES_SUCCESS, payload: data}))
+  }
+}

@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/ActionTypes'
+import * as actionTypes from '../actions/ActionTypes';
 
 const initialState  = {
   is_fetching_planets: false,
