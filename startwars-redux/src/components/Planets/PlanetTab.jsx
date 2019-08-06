@@ -85,7 +85,7 @@ const PlanetTab = props => {
                   <h6>Diameter</h6>
                   <p>{props.planet.diameter}</p>
                 </ListGroup.Item>
-                <ListGroup.Item action className={cardSectionCss}>
+                <ListGroup.Item className={cardSectionCss}>
                   <h6>Rotation Period</h6>
                   <p>{props.planet.rotation_period}d</p>
                 </ListGroup.Item>
