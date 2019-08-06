@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { css } from "emotion";
 
@@ -23,6 +23,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Container className={containerCss}>
+      <Switch>
         <Route exact path="/" component={HomeView} />
         <Route exact path="/movies" component={MoviesView} />
         <Route exact path="/movies/:id" component={MovieView} />
@@ -32,6 +33,8 @@ function App() {
         <Route exact path="/planets/:id" component={PlanetView} />
         <Route exact path="/species" component={AllSpeciesView} />
         <Route exact path="/species/:id" component={SpeciesView} />
+        <Route path="*" render={ props => <h1 {...props}>404 Page Not Found</h1>} />
+      </Switch>
       </Container>
     </div>
   );
