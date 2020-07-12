@@ -1,6 +1,6 @@
 import * as actionTypes from './ActionTypes';
 
-const baseURL = 'https://swapi.co/api'
+const baseURL = 'https://swapi.dev/api'
 
 // Movie Action Creators
 
