@@ -14,15 +14,15 @@ const aCss = css`
   }
 `;
 
-const HomeView = props => {
+const HomeView = (props) => {
   return (
     <div>
       <Jumbotron>
         <h1>Starwars Redux App</h1>
         <p>
-          This is an app I build using React, React Hooks, Redux, React-Redux
+          This is an app I built using React, React Hooks, Redux, React-Redux
           with their new Hooks, Bootstrap and React-Bootstrap. All the data
-          comes from the <a href="https://swapi.co/">SWAPI API</a> via the
+          comes from the <a href="https://swapi.dev/">SWAPI API</a> via the
           native JavaScript Fetch functionality. You can start looking at the
           rest of the app by clicking any of the links in the navbar above or
           click the button below to take you to the movies.
